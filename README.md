@@ -17,6 +17,8 @@ Program ini adalah simulasi sistem manajemen universitas berbasis console untuk 
 3. Ikuti instruksi pada terminal
 
 ## Pembagian Tugas
-- Anggota 1: Class `User`, `Mahasiswa`
-- Anggota 2: Class `MataKuliah`, `KRSManager`
-- Anggota 3: Class `Main`, dokumentasi, dan integrasi
+- Anggota 1: Class `User`
+- Anggota 2: Class `MataKuliah`
+- Anggota 3: Class `IManageKRS`
+- Anggota 4: Class `Mahasiswa`
+- Anggota 5: Class `KRSManager`,`Main` dan dokumentasi
