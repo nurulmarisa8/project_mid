@@ -3,6 +3,19 @@
 ## Deskripsi
 Program ini adalah simulasi sistem manajemen universitas berbasis console untuk mahasiswa. Mahasiswa dapat login, melihat profil, melihat daftar mata kuliah, mengisi dan melihat KRS.
 
+## Fitur
+- Login Mahasiswa
+- Melihat Profil Mahasiswa
+- Melihat Daftar Mata Kuliah
+- Mengisi KRS (menambahkan mata kuliah ke KRS)
+- Melihat KRS yang telah diisi
+
+## Penerapan Prinsip OOP
+- **Abstraction**: Class `User` bersifat abstrak untuk menyederhanakan generalisasi pengguna.
+- **Inheritance**: `Mahasiswa` mewarisi atribut dan method dari `User`.
+- **Encapsulation**: Atribut-atribut dalam kelas menggunakan access modifier dan getter/setter.
+- **Polymorphism**: Penggunaan interface `IManageKRS` dan implementasi metode secara fleksibel.
+
 ## Struktur Class
 - `User` (abstract class)
 - `Mahasiswa` (extends User)
@@ -17,8 +30,8 @@ Program ini adalah simulasi sistem manajemen universitas berbasis console untuk 
 3. Ikuti instruksi pada terminal
 
 ## Pembagian Tugas
-- Anggota 1: Class `User`
-- Anggota 2: Class `MataKuliah`
-- Anggota 3: Class `IManageKRS`
-- Anggota 4: Class `Mahasiswa`
-- Anggota 5: Class `KRSManager`,`Main` dan dokumentasi
+- Gyerend Nydle Linta Mangaluk: Class `User`
+- Naa'ilah Mazaya: Class `MataKuliah`
+- Davidzen: Class `IManageKRS`
+- Julio Rema Palotongan: Class `Mahasiswa`
+- Nurul Marisa Clara Waldi: Class `KRSManager`,`Main` dan dokumentasi
