@@ -70,8 +70,5 @@ public class MataKuliah {
         }
         
         return new MataKuliah(code, name, credits);
-        
     }
 }
-
-
