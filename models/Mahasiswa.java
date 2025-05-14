@@ -8,12 +8,14 @@ public class Mahasiswa extends User {
     private String faculty;
     private List<MataKuliah> mataKuliahDiambil;
 
+
     public Mahasiswa(String name, String studentId, String major, String faculty, String username, String password) {
-        super(name, username, password, Role.MAHASISWA);
+        super(name, username, password, Role.MAHASISWA); 
         this.studentId = studentId;
         this.major = major;
         this.faculty = faculty;
     }
+
 
     public String getName() {
         return name;
@@ -23,7 +25,6 @@ public class Mahasiswa extends User {
         return studentId;
     }
 
-    
 
     public void displayProfile() {
         System.out.println("=== PROFIL MAHASISWA ===");
