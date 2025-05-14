@@ -3,58 +3,70 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-// Kelas Mahasiswa yang meng-extend User
+
 public class Mahasiswa extends User {
-    private String jurusan;
-    private List<MataKuliah> daftarMataKuliah;
+    private String studentId;
+    private String major;
+    private String faculty;
+    private List<MataKuliah> mataKuliahDiambil;
 
-    public Mahasiswa(String id, String nama, String jurusan) {
-        super(id, nama);
-        this.jurusan = jurusan;
-        this.daftarMataKuliah = new ArrayList<>();
+    // Konstruktor
+    public Mahasiswa(String name, String studentId, String major, String faculty, String username, String password) {
+        super(name, username, password, Role.MAHASISWA); 
+        this.studentId = studentId;
+        this.major = major;
+        this.faculty = faculty;
+        this.mataKuliahDiambil = new ArrayList<>();
     }
 
-    // Getter dan Setter (Encapsulation)
-    public String getJurusan() {
-        return jurusan;
+    // Getter dan Setter
+    public String getStudentId() {
+        return studentId;
     }
 
-    public void setJurusan(String jurusan) {
-        this.jurusan = jurusan;
+    public String getMajor() {
+        return major;
     }
 
-    public List<MataKuliah> getDaftarMataKuliah() {
-        return daftarMataKuliah;
+    public String getFaculty() {
+        return faculty;
     }
 
-    // Behavior
+    public List<MataKuliah> getMataKuliahDiambil() {
+        return mataKuliahDiambil;
+    }
+
+
     public void ambilMataKuliah(MataKuliah mataKuliah) {
-        daftarMataKuliah.add(mataKuliah);
-        System.out.println("Berhasil mengambil mata kuliah: " + mataKuliah.getNama());
+        mataKuliahDiambil.add(mataKuliah);
+        System.out.println("Berhasil mengambil mata kuliah: " + mataKuliah.getName());
     }
 
     public void hapusMataKuliah(MataKuliah mataKuliah) {
-        daftarMataKuliah.remove(mataKuliah);
-        System.out.println("Berhasil drop mata kuliah: " + mataKuliah.getNama());
+        mataKuliahDiambil.remove(mataKuliah);
+        System.out.println("Berhasil drop mata kuliah: " + mataKuliah.getName());
     }
 
-    @Override
-    public void displayInfo() {
-        System.out.println("NIM: " + getId());
-        System.out.println("Nama: " + getNama());
-        System.out.println("Jurusan: " + jurusan);
+
+    public void displayProfile() {
+        System.out.println("=== PROFIL MAHASISWA ===");
+        System.out.println("Nama           : " + getName());
+        System.out.println("NIM            : " + studentId);
+        System.out.println("Prodi          : " + major);
+        System.out.println("Fakultas       : " + faculty);
         System.out.println("Mata Kuliah yang Diambil:");
-        if (daftarMataKuliah.isEmpty()) {
-            System.out.println("Belum ada mata kuliah yang diambil");
+        if (mataKuliahDiambil.isEmpty()) {
+            System.out.println("Belum ada mata kuliah yang diambil.");
         } else {
-            for (MataKuliah mataKuliah : daftarMataKuliah) {
-                System.out.println("- " + mataKuliah.getNama() + " (" + mataKuliah.getSks() + " SKS)");
+            for (MataKuliah mataKuliah : mataKuliahDiambil) {
+                System.out.println("- " + mataKuliah.getName() + " (" + mataKuliah.getSks() + " SKS)");
             }
         }
     }
 
+
     @Override
     void performRole() {
-        System.out.println("Mahasiswa " + getNama() + " sedang belajar di jurusan " + jurusan);
+        System.out.println("Mahasiswa " + getName() + " sedang belajar di jurusan " + major);
     }
 }
