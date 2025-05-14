@@ -2,63 +2,63 @@ package models;
 import java.util.Scanner;
 
 public class MataKuliah {
-    private String kode;
-    private String nama;
-    private int sks;
+    private String code;
+    private String name;
+    private int credits;
 
-    public MataKuliah(String kode, String nama, int sks) {
-        this.kode = kode;
-        this.nama = nama;
-        this.sks = sks;
+    public MataKuliah (String code, String name, int credits) {
+        this.code = code;
+        this.name = name;
+        this.credits = credits;
     }
 
-    public String getKode() {
-        return kode;
+    public String getCode() {
+        return code;
     }
 
-    public String getNama() {
-        return nama;
+    public String getName() {
+        return name;
     }
 
-    public int getSks() {
-        return sks;
+    public int getCredits() {
+        return credits;
     }
 
-    public void tampilkanInfo() {
-        System.out.println("Kode: " + kode);
-        System.out.println("Nama: " + nama);
-        System.out.println("SKS: " + sks);
+    public void GetCourseInfo() {
+        System.out.println("Kode: " + code);
+        System.out.println("Nama: " + name);
+        System.out.println("SKS: " + credits);
     }
 
-    public static MataKuliah inputMataKuliah() {
+    public static MataKuliah inputCourse() {
         Scanner scanner = new Scanner(System.in);
 
-        String kode;
+        String code;
         while (true) {
             System.out.print("Masukkan kode mata kuliah: ");
-            kode = scanner.nextLine();
-            if (!kode.isEmpty()) {
+            code = scanner.nextLine();
+            if (!code.isEmpty()) {
                 break; 
             }
             System.out.println("Kode mata kuliah tidak boleh kosong!");
         }
 
-        String nama;
+        String name;
         while (true) {
             System.out.print("Masukkan nama mata kuliah: ");
-            nama = scanner.nextLine();
-            if (!nama.isEmpty()) {
+            name = scanner.nextLine();
+            if (!name.isEmpty()) {
                 break; 
             }
             System.out.println("Nama mata kuliah tidak boleh kosong!");
         }
 
-        int sks;
+        int credits;
         while (true) {
             System.out.print("Masukkan jumlah SKS: ");
             if (scanner.hasNextInt()) {
-                sks = scanner.nextInt();
-                if (sks > 0) {
+                credits = scanner.nextInt();
+                if (credits > 0) {
                     break; 
                 } else {
                     System.out.println("Jumlah SKS harus lebih dari 0!");
@@ -69,7 +69,9 @@ public class MataKuliah {
             }
         }
         
-        return new MataKuliah(kode, nama, sks);
+        return new MataKuliah(code, name, credits);
+        
     }
-
 }
+
+
