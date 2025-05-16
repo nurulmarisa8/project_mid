@@ -12,7 +12,7 @@ import java.util.Map;
 import model.Mahasiswa;
 import model.MataKuliah;
 
-public class KRSManager {
+public class KRSManager implements IManageKRS {
     private final Map<Mahasiswa, List<MataKuliah>> coursePlanMap = new HashMap<>();
     private final List<MataKuliah> allCourses;
 
@@ -32,13 +32,15 @@ public class KRSManager {
         return allCourses;
     }
 
+    @Override
     public void addCourse(Mahasiswa student, MataKuliah course) {
         int totalSKS = student.getCourseList().stream().mapToInt(MataKuliah::getCredits).sum();
         if (totalSKS + course.getCredits() > 20) {
             System.out.println("Batas maksimum 20 SKS telah tercapai. Anda tidak bisa menambahkan mata kuliah ini.");
         } else {
             List<MataKuliah> list = coursePlanMap.getOrDefault(student, new ArrayList<>());
-            boolean courseAlreadyTaken = list.stream().anyMatch(mk -> mk.getCourseInfo().equals(course.getCourseInfo()));
+            // Cek di kedua list: coursePlanMap dan student.getCourseList()
+            boolean courseAlreadyTaken = list.contains(course) || student.getCourseList().contains(course);
             if (courseAlreadyTaken) {
                 System.out.println("Mata kuliah " + course.getCourseInfo() + " sudah diambil.");
             } else {

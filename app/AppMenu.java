@@ -226,9 +226,18 @@ public class AppMenu {
     }
 
     private void removeCourseFromKRS(Mahasiswa mahasiswa, Scanner sc) {
-        mahasiswa.viewStudyPlan();
+        java.util.List<MataKuliah> courseList = mahasiswa.getCourseList();
+        if (courseList.isEmpty()) {
+            System.out.println("Tidak ada mata kuliah yang diambil.");
+            return;
+        }
+
         System.out.println("=============================================");
-        System.out.println("");
+        System.out.println("Daftar Mata Kuliah yang Diambil:");
+        for (int i = 0; i < courseList.size(); i++) {
+            System.out.println((i + 1) + ". " + courseList.get(i).getCourseInfo());
+        }
+        System.out.println("=============================================");
         System.out.print("Pilih nomor mata kuliah untuk dihapus dari KRS: ");
         String deleteStr = sc.nextLine();
         int deleteIndex = 0;
@@ -240,12 +249,11 @@ public class AppMenu {
             return;
         }
 
-        if (deleteIndex >= 0 && deleteIndex < mahasiswa.getCourseList().size()) {
-            MataKuliah courseToDelete = mahasiswa.getCourseList().get(deleteIndex);
+        if (deleteIndex >= 0 && deleteIndex < courseList.size()) {
+            MataKuliah courseToDelete = courseList.get(deleteIndex);
             krsManager.removeCourse(mahasiswa, courseToDelete);
         } else {
             System.out.println("Pilihan tidak valid.");
         }
-        return;
     }
 }
