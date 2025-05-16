@@ -1,0 +1,3 @@
+username,password,nama,nim,jurusan,semester
+H071241001,budi123,Budi Sudarsono,H071241001,Sistem Informasi,1
+H071241002,ayu123,Ayu Kurniawati,H071241002,Sistem Informasi,1
