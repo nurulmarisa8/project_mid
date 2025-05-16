@@ -58,29 +58,32 @@ public class AppMenu {
     }
 
     private void showDosenMenu(Dosen dosen, Scanner sc) {
-        System.out.println("Menu Dosen:");
-        System.out.println("1. Lihat KRS Mahasiswa");
-        System.out.println("2. Cari Mahasiswa Berdasarkan NIM");
-        System.out.println("3. Lihat Mata Kuliah yang Diajarkan");
-        System.out.println("4. Logout");
-        System.out.print("Pilih: ");
-        String choice = sc.nextLine();
+        while (true) {
+            System.out.println("Menu Dosen:");
+            System.out.println("1. Lihat KRS Mahasiswa");
+            System.out.println("2. Cari Mahasiswa Berdasarkan NIM");
+            System.out.println("3. Lihat Mata Kuliah yang Diajarkan");
+            System.out.println("4. Logout");
+            System.out.print("Pilih: ");
+            String choice = sc.nextLine();
 
-        switch (choice) {
-            case "1":
-                viewStudentKRS(dosen, sc);
-                break;
-            case "2":
-                searchStudentByNIM(dosen, sc);
-                break;
-            case "3":
-                viewMataKuliahDosen(dosen);
-                break;
-            case "4":
-                System.out.println("Logout berhasil!");
-                return;
-            default:
-                System.out.println("Pilihan tidak valid.");
+            switch (choice) {
+                case "1":
+                    viewStudentKRS(dosen, sc);
+                    break;
+                case "2":
+                    searchStudentByNIM(dosen, sc);
+                    break;
+                case "3":
+                    viewMataKuliahDosen(dosen);
+                    break;
+                case "4":
+                    System.out.println("Logout berhasil!");
+                    return; 
+                default:
+                    System.out.println("Pilihan tidak valid.");
+            }
+            System.out.println();
         }
     }
 
@@ -163,6 +166,8 @@ public class AppMenu {
             Mahasiswa mahasiswa = dosen.findStudentByNIM(nim);
             if (mahasiswa != null) {
                 System.out.println("Mahasiswa ditemukan: " + mahasiswa.getName());
+                System.out.println("Jurusan: " + mahasiswa.getMajor());
+                System.out.println("Semester: " + mahasiswa.getSemester());
                 break; 
             } else {
                 System.out.println("Mahasiswa tidak ditemukan.");
@@ -176,7 +181,8 @@ public class AppMenu {
     }
 
     private void viewMataKuliahDosen(Dosen dosen) {
-        System.out.println("Mata Kuliah yang Diajarkan oleh " + dosen.getNama() + ":");
+        System.out.println("=============================================");
+        System.out.println("Mata Kuliah yang Diajarkan oleh " + dosen.getName() + ":");
         if (dosen.getMataKuliahList().isEmpty()) {
             System.out.println("- Tidak ada mata kuliah yang diajarkan.");
         } else {

@@ -8,14 +8,14 @@ import service.UserManager;
 public class Dosen extends User {
 
     private UserManager userManager;
-    private String nama; 
+    private String name; 
     private String department; 
     private List<MataKuliah> mataKuliahList;
 
     
-    public Dosen(String username, String password, String nama, String department) {
+    public Dosen(String username, String password, String name, String department) {
         super(username, password);
-        this.nama = nama;
+        this.name = name;
         this.department = department;
         this.mataKuliahList = new ArrayList<>(); 
     }
@@ -41,8 +41,8 @@ public class Dosen extends User {
     }
 
     
-    public String getNama() {
-        return nama;
+    public String getName() {
+        return name;
     }
 
     
