@@ -67,6 +67,6 @@ Aplikasi **Sistem Manajemen Universitas** telah diuji untuk memastikan bahwa set
 ## Pembagian Tugas
 - Gyerend Nydle Linta Mangaluk: Class `User` dan `LoginHelper`
 - Julio Rema Palotongan: Class `Mahasiswa` dan `UserManager`
-- Davidzen: Class `IManageKRS` dan `Role`
+- Davidzen: Class `IManageKRS` 
 - Naa'ilah Mazaya: Class `MataKuliah` dan `Dosen`, 
 - Nurul Marisa Clara Waldi: Class `KRSManager`,`Main` dan dokumentasi
