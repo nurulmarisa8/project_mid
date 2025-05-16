@@ -39,7 +39,6 @@ public class KRSManager implements IManageKRS {
             System.out.println("Batas maksimum 20 SKS telah tercapai. Anda tidak bisa menambahkan mata kuliah ini.");
         } else {
             List<MataKuliah> list = coursePlanMap.getOrDefault(student, new ArrayList<>());
-            // Cek di kedua list: coursePlanMap dan student.getCourseList()
             boolean courseAlreadyTaken = list.contains(course) || student.getCourseList().contains(course);
             if (courseAlreadyTaken) {
                 System.out.println("Mata kuliah " + course.getCourseInfo() + " sudah diambil.");
