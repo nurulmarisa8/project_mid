@@ -41,7 +41,7 @@ Sistem Manajemen Universitas adalah aplikasi berbasis console yang memungkinkan 
 
 ## Pengujian Aplikasi
 
-Aplikasi **Sistem Manajemen Universitas** telah diuji untuk memastikan bahwa setiap fitur berfungsi dengan baik. Berikut adalah daftar pengujian yang telah dilakukan dan hasil yang diharapkan:
+Aplikasi **Sistem Manajemen Universitas** telah diuji untuk memastikan bahwa setiap fitur berfungsi dengan baik. Berikut adalah daftar pengujian yang telah dilakukan dan juga hasil yang diharapkan:
 
 | **No** | **Deskripsi Pengujian**                                                | **Hasil yang Diharapkan**                                                   | **Hasil**      |
 |--------|-----------------------------------------------------------------------|----------------------------------------------------------------------------|----------------|
