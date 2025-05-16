@@ -1,16 +1,16 @@
 package model;
 
-import service.KRSManager;
-import service.UserManager;
 import java.util.ArrayList;
 import java.util.List;
+import service.KRSManager;
+import service.UserManager;
 
 public class Dosen extends User {
 
     private UserManager userManager;
     private String nama; 
     private String department; 
-    private List<MataKuliah> mataKuliahList; 
+    private List<MataKuliah> mataKuliahList;
 
     
     public Dosen(String username, String password, String nama, String department) {
@@ -24,6 +24,10 @@ public class Dosen extends User {
         super(username, password);
         this.userManager = userManager2;
         this.mataKuliahList = new ArrayList<>();
+    }
+
+    public Dosen(String username, String password) {
+        super(username, password);
     }
 
 

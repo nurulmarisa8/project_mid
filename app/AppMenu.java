@@ -1,13 +1,12 @@
 package app;
 
-import model.User;
-import service.UserManager;
-import service.KRSManager;
+import java.util.Scanner;
 import model.Dosen;
 import model.Mahasiswa;
 import model.MataKuliah;
-
-import java.util.Scanner;
+import model.User;
+import service.KRSManager;
+import service.UserManager;
 
 public class AppMenu {
     private UserManager userManager;
