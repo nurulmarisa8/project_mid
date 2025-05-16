@@ -3,10 +3,10 @@ package app;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import service.UserManager;
 import model.Dosen;
 import model.Mahasiswa;
 import model.MataKuliah;
+import service.UserManager;
 
 public class DataLoader {
 
@@ -22,8 +22,8 @@ public class DataLoader {
                     if (mhsData.length >= 6) {
                         String nim = mhsData[0].trim();
                         String password = mhsData[1].trim();
-                        String nama = mhsData[2].trim();
-                        String jurusan = mhsData[3].trim();
+                        String name = mhsData[2].trim();
+                        String departmen = mhsData[3].trim();
                         String semester = mhsData[4].trim();
                         int sks = 0;
 
@@ -33,7 +33,7 @@ public class DataLoader {
                             sks = 2;  
                         }
 
-                        Mahasiswa mhs = new Mahasiswa(nim, password, nama, jurusan, semester, sks);
+                        Mahasiswa mhs = new Mahasiswa(nim, password, name, departmen, semester, sks);
 
                         if (parts.length > 1) {
                             String[] courses = parts[1].split(",");
@@ -59,9 +59,9 @@ public class DataLoader {
                 if (parts.length >= 3) {
                     String username = parts[0].trim();
                     String password = parts[1].trim();
-                    String nama = parts[2].trim();
-                    String jurusan = parts.length > 3 ? parts[3].trim() : "";
-                    Dosen dosen = new Dosen(username, password, nama, jurusan);
+                    String name = parts[2].trim();
+                    String departmen = parts.length > 3 ? parts[3].trim() : "";
+                    Dosen dosen = new Dosen(username, password, name, departmen);
 
                     
                     for (int i = 4; i < parts.length; i++) {

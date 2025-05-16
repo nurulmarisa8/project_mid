@@ -1,30 +1,20 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Mahasiswa extends User {
     private final String name;
-    public String getName() {
-        return name;
-    }
-
+    
     private final String nim;
     private final String major;
     private final int semester;
-
-    public String getMajor() {
-        return major;
-    }
-
-    public int getSemester() {
-        return semester;
-    }
-
+    
+    
     private final List<MataKuliah> courseList = new ArrayList<>();
-
+    
     public Mahasiswa(String username, String password, String name, String nim, String major, int semester) {
         super(username, password);
         this.name = name;
@@ -32,7 +22,18 @@ public class Mahasiswa extends User {
         this.major = major;
         this.semester = semester;
     }
+    
+    public String getName() {
+        return name;
+    }
+    public String getMajor() {
+        return major;
+    }
 
+    public int getSemester() {
+        return semester;
+    }
+    
     public String getNim() {
         return nim;
     }
@@ -56,17 +57,15 @@ public class Mahasiswa extends User {
     }
 
     public void viewStudyPlan() {
-        // Baca ulang KRS dari file sebelum menampilkan
+
         try (BufferedReader br = new BufferedReader(new FileReader("data/krs.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
-                // Format: NIM: SI101 - Algoritma & Pemerograman (10 SKS), ...
                 String[] parts = line.split(":");
                 if (parts.length == 2 && parts[0].trim().equals(this.nim)) {
                     courseList.clear();
                     String[] courses = parts[1].split(",");
                     for (String courseStr : courses) {
-                        // Ambil kode, nama, dan SKS dari string
                         String[] info = courseStr.trim().split(" - | \\(| SKS\\)");
                         if (info.length >= 3) {
                             String code = info[0].trim();
@@ -75,7 +74,7 @@ public class Mahasiswa extends User {
                             try {
                                 sks = Integer.parseInt(info[2].trim());
                             } catch (NumberFormatException e) {
-                                // default SKS
+
                             }
                             courseList.add(new MataKuliah(code, name, sks));
                         }
@@ -101,15 +100,4 @@ public class Mahasiswa extends User {
         System.out.println("Anda telah logout. Silakan login ulang.");
     }
 
-    public void KRSManager() {
-        throw new UnsupportedOperationException("Unimplemented method 'KRSManager'");
-    }
-
-    public void getAllMataKuliah() {
-        throw new UnsupportedOperationException("Unimplemented method 'getAllMataKuliah'");
-    }
-
-    public void getAllCourses() {
-        throw new UnsupportedOperationException("Unimplemented method 'getAllCourses'");
-    }
 }

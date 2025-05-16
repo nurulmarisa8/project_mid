@@ -1,7 +1,7 @@
 package app;
 
-import service.UserManager;
 import service.KRSManager;
+import service.UserManager;
 
 public class Main {
 

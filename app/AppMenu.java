@@ -1,13 +1,12 @@
 package app;
 
-import model.User;
-import service.UserManager;
-import service.KRSManager;
+import java.util.Scanner;
 import model.Dosen;
 import model.Mahasiswa;
 import model.MataKuliah;
-
-import java.util.Scanner;
+import model.User;
+import service.KRSManager;
+import service.UserManager;
 
 public class AppMenu {
     private UserManager userManager;
@@ -59,29 +58,32 @@ public class AppMenu {
     }
 
     private void showDosenMenu(Dosen dosen, Scanner sc) {
-        System.out.println("Menu Dosen:");
-        System.out.println("1. Lihat KRS Mahasiswa");
-        System.out.println("2. Cari Mahasiswa Berdasarkan NIM");
-        System.out.println("3. Lihat Mata Kuliah yang Diajarkan");
-        System.out.println("4. Logout");
-        System.out.print("Pilih: ");
-        String choice = sc.nextLine();
+        while (true) {
+            System.out.println("Menu Dosen:");
+            System.out.println("1. Lihat KRS Mahasiswa");
+            System.out.println("2. Cari Mahasiswa Berdasarkan NIM");
+            System.out.println("3. Lihat Mata Kuliah yang Diajarkan");
+            System.out.println("4. Logout");
+            System.out.print("Pilih: ");
+            String choice = sc.nextLine();
 
-        switch (choice) {
-            case "1":
-                viewStudentKRS(dosen, sc);
-                break;
-            case "2":
-                searchStudentByNIM(dosen, sc);
-                break;
-            case "3":
-                viewMataKuliahDosen(dosen);
-                break;
-            case "4":
-                System.out.println("Logout berhasil!");
-                return;
-            default:
-                System.out.println("Pilihan tidak valid.");
+            switch (choice) {
+                case "1":
+                    viewStudentKRS(dosen, sc);
+                    break;
+                case "2":
+                    searchStudentByNIM(dosen, sc);
+                    break;
+                case "3":
+                    viewMataKuliahDosen(dosen);
+                    break;
+                case "4":
+                    System.out.println("Logout berhasil!");
+                    return; 
+                default:
+                    System.out.println("Pilihan tidak valid.");
+            }
+            System.out.println();
         }
     }
 
@@ -164,6 +166,8 @@ public class AppMenu {
             Mahasiswa mahasiswa = dosen.findStudentByNIM(nim);
             if (mahasiswa != null) {
                 System.out.println("Mahasiswa ditemukan: " + mahasiswa.getName());
+                System.out.println("Jurusan: " + mahasiswa.getMajor());
+                System.out.println("Semester: " + mahasiswa.getSemester());
                 break; 
             } else {
                 System.out.println("Mahasiswa tidak ditemukan.");
@@ -177,7 +181,8 @@ public class AppMenu {
     }
 
     private void viewMataKuliahDosen(Dosen dosen) {
-        System.out.println("Mata Kuliah yang Diajarkan oleh " + dosen.getNama() + ":");
+        System.out.println("=============================================");
+        System.out.println("Mata Kuliah yang Diajarkan oleh " + dosen.getName() + ":");
         if (dosen.getMataKuliahList().isEmpty()) {
             System.out.println("- Tidak ada mata kuliah yang diajarkan.");
         } else {
@@ -221,9 +226,18 @@ public class AppMenu {
     }
 
     private void removeCourseFromKRS(Mahasiswa mahasiswa, Scanner sc) {
-        mahasiswa.viewStudyPlan();
+        java.util.List<MataKuliah> courseList = mahasiswa.getCourseList();
+        if (courseList.isEmpty()) {
+            System.out.println("Tidak ada mata kuliah yang diambil.");
+            return;
+        }
+
         System.out.println("=============================================");
-        System.out.println("");
+        System.out.println("Daftar Mata Kuliah yang Diambil:");
+        for (int i = 0; i < courseList.size(); i++) {
+            System.out.println((i + 1) + ". " + courseList.get(i).getCourseInfo());
+        }
+        System.out.println("=============================================");
         System.out.print("Pilih nomor mata kuliah untuk dihapus dari KRS: ");
         String deleteStr = sc.nextLine();
         int deleteIndex = 0;
@@ -235,12 +249,11 @@ public class AppMenu {
             return;
         }
 
-        if (deleteIndex >= 0 && deleteIndex < mahasiswa.getCourseList().size()) {
-            MataKuliah courseToDelete = mahasiswa.getCourseList().get(deleteIndex);
+        if (deleteIndex >= 0 && deleteIndex < courseList.size()) {
+            MataKuliah courseToDelete = courseList.get(deleteIndex);
             krsManager.removeCourse(mahasiswa, courseToDelete);
         } else {
             System.out.println("Pilihan tidak valid.");
         }
-        return;
     }
 }
